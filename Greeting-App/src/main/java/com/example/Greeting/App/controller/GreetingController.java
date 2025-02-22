@@ -1,5 +1,7 @@
-package com.example.Greeting.App;
+package com.example.Greeting.App.controller;
 
+import com.example.Greeting.App.Service.GreetingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
@@ -34,5 +36,12 @@ public class GreetingController {
                 "third",postGreeting(),
                 "forth",deleteGreeting()
         );
+    }
+    // UC-02 Services Layer to get Simple Greeting
+    @Autowired
+    private GreetingService greetingService;
+    @GetMapping("/service")
+    public String getServiceGreeting() {
+        return greetingService.getSimpleGreeting();
     }
 }
