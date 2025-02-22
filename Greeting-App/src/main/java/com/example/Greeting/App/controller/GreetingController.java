@@ -95,4 +95,10 @@ public class GreetingController {
     public Greeting updateGreeting(@PathVariable Long id, @RequestParam String message) {
         return greetingService.updateGreeting(id, message);
     }
+
+    // UC-08 Ability for the Greeting App to Delete a Greeting Message from the Repository
+    @DeleteMapping("/delete/{id}")
+    public String deleteGreetingById(@PathVariable Long id) {
+        return greetingService.deleteGreetingById(id);
+    }
 }
