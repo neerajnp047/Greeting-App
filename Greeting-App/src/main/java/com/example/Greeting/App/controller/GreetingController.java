@@ -1,7 +1,7 @@
 package com.example.Greeting.App.controller;
 
-import com.example.Greeting.App.Service.FullNameService;
 import com.example.Greeting.App.Service.GreetingService;
+import com.example.Greeting.App.model.Greeting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,6 +40,7 @@ public class GreetingController {
                 "forth",deleteGreeting()
         );
     }
+
     // UC-02 Services Layer to get Simple Greeting
     @Autowired
     private GreetingService greetingService;
@@ -53,12 +54,25 @@ public class GreetingController {
     public Map<String ,String> greetingMethod(
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName){
-        FullNameService obj=new FullNameService();
+        GreetingService obj=new GreetingService();
         Map<String ,String > response=new HashMap<>();
 
         response.put("response is ", obj.greetingWithName(firstName,lastName));
         return response ;
 
-
     }
+
+    //UC-04 Ability for the Greeting App to save the Greeting Message in the Repository
+
+    @PostMapping("/save")
+    public Greeting saveGreeting(@RequestParam String message) {
+        return greetingService.saveGreeting(message);
+    }
+    @GetMapping("/personalized")
+    public String getPersonalizedGreeting(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName){
+        return greetingService.getPersonalizedGreetings(firstName, lastName);
+    }
+
 }
