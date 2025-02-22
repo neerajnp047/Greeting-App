@@ -1,8 +1,11 @@
 package com.example.Greeting.App.controller;
 
+import com.example.Greeting.App.Service.FullNameService;
 import com.example.Greeting.App.Service.GreetingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -43,5 +46,19 @@ public class GreetingController {
     @GetMapping("/service")
     public String getServiceGreeting() {
         return greetingService.getSimpleGreeting();
+    }
+
+    // uc3 greeting message with either firstname,lastname or full name
+    @GetMapping("/greetingname")
+    public Map<String ,String> greetingMethod(
+            @RequestParam(required = false) String firstName,
+            @RequestParam(required = false) String lastName){
+        FullNameService obj=new FullNameService();
+        Map<String ,String > response=new HashMap<>();
+
+        response.put("response is ", obj.greetingWithName(firstName,lastName));
+        return response ;
+
+
     }
 }
