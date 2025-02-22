@@ -5,6 +5,8 @@ import com.example.Greeting.App.repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GreetingService {
 
@@ -57,6 +59,13 @@ public class GreetingService {
     public Greeting findGreetingById(Long id) {
         return greetingRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Geeting not found with id: " + id));
+    }
+
+
+    //UC-06
+
+    public List<Greeting> getAllGreetings() {
+        return greetingRepository.findAll();
     }
 }
 
