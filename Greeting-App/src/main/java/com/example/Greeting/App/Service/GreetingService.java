@@ -75,6 +75,16 @@ public class GreetingService {
         greeting.setMessage(message);
         return greetingRepository.save(greeting);
     }
+
+    // UC-08
+    public String deleteGreetingById(Long id) {
+        if (greetingRepository.existsById(id)) {
+            greetingRepository.deleteById(id);
+            return "Greeting with id " + id + " has been deleted successfully.";
+        } else {
+            throw new RuntimeException("Greeting not found with id: " + id);
+        }
+    }
 }
 
 
