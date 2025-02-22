@@ -15,7 +15,7 @@ public class GreetingService {
     public String getSimpleGreeting() {
         return "Hello World";
     }
-    
+
     //UC-03
 
     public String greetingWithName(String firstName, String lastName) {
@@ -51,6 +51,12 @@ public class GreetingService {
 
         saveGreeting(message);
         return "{\"message\": \"" + message + "\"}";
+    }
+
+
+    public Greeting findGreetingById(Long id) {
+        return greetingRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Geeting not found with id: " + id));
     }
 }
 

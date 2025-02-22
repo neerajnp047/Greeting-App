@@ -75,4 +75,10 @@ public class GreetingController {
         return greetingService.getPersonalizedGreetings(firstName, lastName);
     }
 
+    //UC-05 Ability for the Greeting App to find a Greeting Message by Id in the Repository
+
+    @GetMapping("/find/{id}")
+    public Greeting findGreetingById(@PathVariable Long id){
+        return greetingService.findGreetingById(id);
+    }
 }
