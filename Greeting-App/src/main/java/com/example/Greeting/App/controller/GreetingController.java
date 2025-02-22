@@ -89,4 +89,10 @@ public class GreetingController {
     public List<Greeting> getAllGreetings(){
         return greetingService.getAllGreetings();
     }
+
+    // UC-07 Ability for the Greeting App to Edit a Greeting Message in the Repository
+    @PutMapping("/update/{id}")
+    public Greeting updateGreeting(@PathVariable Long id, @RequestParam String message) {
+        return greetingService.updateGreeting(id, message);
+    }
 }
